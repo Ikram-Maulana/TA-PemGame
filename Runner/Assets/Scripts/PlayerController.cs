@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public float speedIncreasePerPoint = 0.1f;
 
+    [SerializeField] float jumpForce = 15f;
+    [SerializeField] LayerMask groundMask;
+
     private void FixedUpdate()
     {
         if(!alive) return;
@@ -37,6 +40,10 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
+        if(Input.GetKeyDown(KeyCode.Space)) {
+          Jump();
+        }
+
         if(transform.position.y < -5) 
         {
           Die();
@@ -52,5 +59,20 @@ public class PlayerController : MonoBehaviour
     void Restart()
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void Jump() 
+    {
+      if(IsOnTheGround() == true)
+      {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+      }
+    }
+
+    bool IsOnTheGround()
+    {
+      float height = GetComponent<Collider>().bounds.size.y;
+      bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) * 0.1f, groundMask.value);
+      return isGrounded;
     }
 }
