@@ -5,34 +5,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Rigidbody rb;
-    public float thrust = 10.0f;
-    public LayerMask groundLayerMask; 
+    public float speed = 5;
+    public Rigidbody rb;
+    public float xRange = 4.5f;
 
-    void Start()
+    float horizontalInput;
+    public float horizontalMultiplier = 2;
+
+    private void FixedUpdate()
     {
-        rb = GetComponent<Rigidbody>();
+        Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
+        Vector3 horizontalMove = transform.right * horizontalInput * Time.fixedDeltaTime * horizontalMultiplier;
+        rb.MovePosition(rb.position + forwardMove + horizontalMove);
+        if (transform.position.x < -xRange){
+          transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange){
+          transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        bool isOnTheGround = IsOnTheGround();
-        if((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isOnTheGround){
-            Jump();
-        }
-    }
-
-    void Jump()
-    {
-        if(IsOnTheGround() == true)
-        {
-            rb.AddForce(Vector3.up * thrust, ForceMode.Impulse);
-        }
-    }
-
-    bool IsOnTheGround()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 1.0f, groundLayerMask.value);
+        horizontalInput = Input.GetAxis("Horizontal");
     }
 }
