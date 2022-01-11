@@ -413,6 +413,10 @@ MonoBehaviour:
   xRange: 4.5
   horizontalMultiplier: 5
   speedIncreasePerPoint: 0.1
+  jumpForce: 15
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &2084516498
 PrefabInstance:
   m_ObjectHideFlags: 0
