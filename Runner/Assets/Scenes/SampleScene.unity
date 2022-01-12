@@ -553,6 +553,7 @@ MonoBehaviour:
   player: {fileID: 1324806526}
   scoreText: {fileID: 1661045667}
   highScoreText: {fileID: 178052494}
+  playerController: {fileID: 1324806528}
 --- !u!1 &1100179735
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +675,7 @@ MonoBehaviour:
   rb: {fileID: 1324806524}
   xRange: 4.5
   horizontalMultiplier: 5
-  speedIncreasePerPoint: 0.1
+  speedIncreasePerTime: 0.1
   jumpForce: 15
   groundMask:
     serializedVersion: 2

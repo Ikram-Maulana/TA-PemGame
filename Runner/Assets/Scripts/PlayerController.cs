@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     [SerializeField] float horizontalMultiplier = 5;
 
-    public float speedIncreasePerPoint = 0.1f;
+    public float speedIncreasePerTime = 0.1f;
 
     [SerializeField] float jumpForce = 15f;
     [SerializeField] LayerMask groundMask;
