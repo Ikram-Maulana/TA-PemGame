@@ -25,9 +25,9 @@ public class Score : MonoBehaviour
     if(highScore < score) {
       PlayerPrefs.SetFloat("highScore", score);
     }
-    if(score % 150 == 0) {
-      playerController.speed += playerController.speedIncreasePerTime;
-    }
+    // if(score % 150 == 0) {
+    //   playerController.speed += playerController.speedIncreasePerTime;
+    // }
   }
 }
 

@@ -19,17 +19,16 @@ public class GroundTile : MonoBehaviour
       Destroy(gameObject, 2);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SpawnObstacle() 
     {
-      int obstacleSpawnIndex = Random.Range(2, 5);
-      Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
+      bool inGameMode = GameManager.GetInstance().currentGameState == GameState.InGame;
 
-      Instantiate(obstaclePrefabs, spawnPoint.position, Quaternion.identity, transform);
+      if(inGameMode)
+      {
+        int obstacleSpawnIndex = Random.Range(2, 5);
+        Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
+
+        Instantiate(obstaclePrefabs, spawnPoint.position, Quaternion.identity, transform);
+      }
     }
 }
