@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
       alive = true;
       transform.position = initialPosition;
-      rb.velocity = initialVelocity;
+      rb.velocity = new Vector3(0, 0);
     }
 
     private void FixedUpdate()

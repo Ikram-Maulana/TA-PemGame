@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+      LevelGenerator.sharedInstance.CreateInitialBlocks();
       PlayerController.GetInstance().StartGame();
       ChangeGameState(GameState.InGame);
     }
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     public void GameOver()
     {
+      LevelGenerator.sharedInstance.RemoveAllBlocks();
       ChangeGameState(GameState.GameOver);
     }
 
